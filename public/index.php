@@ -39,7 +39,7 @@
                     <input type="tel" id="phone" name="phone" placeholder="Required"><br>
                 </div>
                 <div class="contact_input">
-                    <label for="address">Street Address</label>
+                    <label for="address">Calle / Address</label>
                     <input type="text" id="address" name="address"><br>
                 </div>
                 <div class="contact_input">
