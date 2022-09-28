@@ -13,8 +13,6 @@
     <header>
         <h1>The Code Review</h1>
     </header>
-	
-    <?php include '../modules/include/news_reg.php';?>
 
     <div class="top">
         <h2>Signup for our newsletter</h2>
@@ -28,17 +26,17 @@
                 <legend>Contact Information</legend>
                 <div class="contact_input">
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Required" required>
+                    <input type="text" id="name" name="name" placeholder="Required">
                     <br>
                     
                 </div>
                 <div class="contact_input">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Required" required><br>
+                    <input type="email" id="email" name="email" placeholder="Required"><br>
                 </div>
                 <div class="contact_input">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone"><br>
+                    <input type="tel" id="phone" name="phone" placeholder="Required"><br>
                 </div>
                 <div class="contact_input">
                     <label for="address">Street Address</label>
@@ -50,7 +48,7 @@
                 </div>
                 <div class="contact_input">
                     <label for="province">Province</label>
-                    <select name="province" id="province" placeholder="Choose State">
+                    <select name="province" id="province">
                         <option value="">Elige Provincia</option>
                         <option value="Álava/Araba">Álava/Araba</option>
                         <option value="Albacete">Albacete</option>
@@ -115,13 +113,13 @@
                 <legend>Newsletter</legend>
                 <label>Select the newsletters you would like to recive</label><br>
                 <br>
-                <input id="newshtml" type="checkbox" value="HTML" name="news">
+                <input id="newshtml" type="checkbox" value="HTML" name="news[]">
                 <label for="newshtml">HTML News</label><br>
                 <br>
-                <input id="newscss" type="checkbox" value="CSS" name="news">
+                <input id="newscss" type="checkbox" value="CSS" name="news[]">
                 <label for="newscss">CSS News</label><br>
                 <br>
-                <input id="newsjs" type="checkbox" value="JS" name="news">
+                <input id="newsjs" type="checkbox" value="JS" name="news[]">
                 <label for="newsjs">Javascript News</label><br>
                 <br>
                 <label>Newsletter format</label><br>
@@ -137,13 +135,11 @@
                 <textarea id="othert" name="othert" placeholder="Write the topics you would like to read..."></textarea>
             </fieldset>
 
-            <input type="submit" value="Sign Up">
+            <button type="submit">Sign Up</button>
         </form>
 </div>
 
 <?php include '../modules/include/footer.php';?>
 
-</body>
-</html>
 </body>
 </html>
