@@ -11,7 +11,7 @@ $name = $email = $phone = $address = $province =$Zcode=$news =$format =$othert =
       $address = $_POST["address"];
       $province = $_POST["province"];
       $Zcode = $_POST["Zcode"];
-      $cheko = $_POST["news"];
+      $cheko = $_POST["new"];
       $format = $_POST["format"];
       $othert = $_POST["othert"];
       $city = $_POST["city"];
