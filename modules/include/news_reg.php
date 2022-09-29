@@ -1,32 +1,35 @@
 <?php
 require "../require/config.php";
 
+function limpiarDatos($data) {    //Esta función corrige errores previos que pueda haber puesto el usuario
+      $data = trim($data);    //Limpia los espacios tanto detrás como delante del string
+      $data = stripslashes($data);    //
+      $data = htmlspecialchars($data);    //Limpia caracteres especiales
+      return $data;
+  }
+
 $name = $email = $phone = $address = $province =$Zcode=$news =$format =$othert =$city= "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if (!empty($_POST["name"]) || !empty($_POST["phone"])|| !empty($_POST["email"])) {
-      $name = $_POST["name"];
-      $email = $_POST["email"];
-      $phone = $_POST["phone"];
-      $address = $_POST["address"];
-      $province = $_POST["province"];
-      $Zcode = $_POST["Zcode"];
-      $cheko = $_POST["new"];
-      $format = $_POST["format"];
-      $othert = $_POST["othert"];
-      $city = $_POST["city"];
+        print_r($_POST);
+      $name = limpiarDatos($_POST["name"]);
+      $email = limpiarDatos($_POST["email"]);
+      $phone = limpiarDatos($_POST["phone"]);
+      $address = limpiarDatos($_POST["address"]);
+      $province = limpiarDatos($_POST["province"]);
+      $Zcode = limpiarDatos($_POST["Zcode"]);
+      $cheko = limpiarDatos($_POST["new"]);
+      $format = limpiarDatos($_POST["format"]);
+      $othert = limpiarDatos($_POST["othert"]);
+      $city = limpiarDatos($_POST["city"]);
       } else {
         echo "Debe rellenar los datos requeridos";
       }
       
     }
 
-    function limpiarDatos($data) {    //Esta función corrige errores previos que pueda haber puesto el usuario
-      $data = trim($data);    //Limpia los espacios tanto detrás como delante del string
-      $data = stripslashes($data);    //
-      $data = htmlspecialchars($data);    //Limpia caracteres especiales
-      return $data;
-  }
+    
 
     //Nombre, email y número de teléfono
 
@@ -51,16 +54,18 @@ function validar_movil($phone){
   }
 }
 
-    echo "$name<br>";
-    echo "$email<br>";
-    echo "$phone<br>";
-    echo "$address<br>";
-    echo "$province<br>";
-    echo "$Zcode<br>";
-    foreach($cheko as $cheka){
-      echo $cheka . "<br>";
+
+    echo "<strong>Nombre </strong>".$name."<br>";
+    echo "<strong>Email </strong>".$email."<br>";
+    echo "<strong>Phone </strong>".$phone."<br>";
+  //   foreach($cheko as $cheka){
+  //     echo $cheka . "<br>";
+  // }
+
+  if (validar_nombre($name)) {
+    echo "validada";
+  } else {
+    echo "no validada";
   }
-    echo "<br>$format<br>";
-    echo "$othert<br>";
-    echo "$city<br>";
 ?>
+
