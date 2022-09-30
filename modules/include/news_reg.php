@@ -16,19 +16,46 @@ $name = $email = $phone = $address = $province =$Zcode=$news =$format =$othert =
       $name = limpiarDatos($_POST["name"]);
       $email = limpiarDatos($_POST["email"]);
       $phone = limpiarDatos($_POST["phone"]);
-      $address = limpiarDatos($_POST["address"]);
-      $province = limpiarDatos($_POST["province"]);
-      $Zcode = limpiarDatos($_POST["Zcode"]);
-      $cheko = limpiarDatos($_POST["new"]);
-      $format = limpiarDatos($_POST["format"]);
-      $othert = limpiarDatos($_POST["othert"]);
-      $city = limpiarDatos($_POST["city"]);
+
+      if (isset($_POST["address"])) {
+        $address = limpiarDatos($_POST["address"]);
       } else {
-        echo "Debe rellenar los datos requeridos";
+        $address = null;
       }
       
+      
+      if (isset($_POST["province"])) {
+        $province = limpiarDatos($_POST["province"]);
+      } else {
+        $province = null;
+      }
+      if (isset($_POST["Zcode"])) {
+        $Zcode = limpiarDatos($_POST["Zcode"]);
+      } else {
+        $Zcode = null;
+      }
+      if (isset($_POST["new"])) {
+        $cheko = limpiarDatos($_POST["new"]);
+      } else {
+        $cheko = null;
+      }
+      if (isset($_POST["format"])) {
+         $format = limpiarDatos($_POST["format"]);
+       } else {
+         $format = null;
+       }
+       if (isset($_POST["othert"])) {
+        $othert = limpiarDatos($_POST["othert"]);
+      } else {
+        $cheko = null;
+      }
+      if (isset($_POST["city"])) {
+        $city = limpiarDatos($_POST["city"]);
+      } else {
+        $city = null;
+      }
     }
-
+  }
     
 
     //Nombre, email y número de teléfono
@@ -54,18 +81,10 @@ function validar_movil($phone){
   }
 }
 
-
     echo "<strong>Nombre </strong>".$name."<br>";
     echo "<strong>Email </strong>".$email."<br>";
     echo "<strong>Phone </strong>".$phone."<br>";
   //   foreach($cheko as $cheka){
   //     echo $cheka . "<br>";
   // }
-
-  if (validar_nombre($name)) {
-    echo "validada";
-  } else {
-    echo "no validada";
-  }
 ?>
-
