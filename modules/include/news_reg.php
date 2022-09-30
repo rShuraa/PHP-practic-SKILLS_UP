@@ -36,6 +36,7 @@ $name = $email = $phone = $address = $province =$Zcode=$news =$format =$othert =
       }
       if (isset($_POST["new"])) {
         $cheko = limpiarDatos($_POST["new"]);
+        var_dump($cheko);
       } else {
         $cheko = null;
       }
