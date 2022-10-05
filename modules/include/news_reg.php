@@ -57,65 +57,82 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
     if (validar_nombre($name) && validar_email($email) && validar_movil($phone)) {
-      echo "<strong>Name: </strong>".$name."<br/><strong>Email: </strong>".$email."<br/><strong>Phone: </strong>".$phone."<br/>";
-    
-
-    if (isset($_POST["address"])) {
-      $address = limpiarDatos($_POST["address"]);
-      echo "<strong>Address: </strong>".$address."<br/>";
-    } else {
-      $address = null;
-    }
+      if (isset($_POST["address"])) {
+        $address = limpiarDatos($_POST["address"]);
+      } else {
+        $address = null;
+      }
 
 
-    if (isset($_POST["province"])) {
-      $province = limpiarDatos($_POST["province"]);
-      echo "<strong>Province: </strong>".$province."<br/>";
-    } else {
-      $province = null;
-    }
+      if (isset($_POST["province"])) {
+        $province = limpiarDatos($_POST["province"]);
+      } else {
+        $province = null;
+      }
 
-    if (isset($_POST["city"])) {
-      $city = limpiarDatos($_POST["city"]);
-      echo "<strong>City: </strong>".$city."<br/>";
-    } else {
-      $city = null;
-    }
+      if (isset($_POST["city"])) {
+        $city = limpiarDatos($_POST["city"]);
+      } else {
+        $city = null;
+      }
 
-    if (isset($_POST["Zcode"])) {
-      $Zcode = limpiarDatos($_POST["Zcode"]);
-      echo "<strong>Z-Code: </strong>".$Zcode."<br/>";
-    } else {
-      $Zcode = null;
-    }
-    
-    if (isset($_POST["new"])) {
-      $cheko = limpiarDatos($_POST["new"]);
-      var_dump($cheko);
-    } else {
-      $cheko = null;
-    }
+      if (isset($_POST["Zcode"])) {
+        $Zcode = limpiarDatos($_POST["Zcode"]);
+        
+      } else {
+        $Zcode = null;
+      }
+      
+      if (isset($_POST["new"])) {
+        $cheko = limpiarDatos($_POST["new"]);
+        
+      } else {
+        $cheko = null;
+      }
 
-    if (isset($_POST["format"])) {
-      $format = limpiarDatos($_POST["format"]);
-      echo "<strong>Format: </strong>".$format."<br/>";
-    } else {
-      $format = null;
-    }
+      // if (isset($_POST["format"])) {
+      //   $format = limpiarDatos($_POST["format"]);
+        
+      // } else {
+      //   $format = null;
+      // }
 
 
-    if (isset($_POST["othert"])) {
-      $othert = limpiarDatos($_POST["othert"]);
-      echo "<strong>Comment: </strong>".$othert."<br/>";
+      if (isset($_POST['format'])) {
+        $format = limpiarDatos($_POST["format"]);
+        if ($format == "fhtml") {
+          $format = 0;
+        } else {
+          $format = 1;
+        }
+      }
+
+
+      if (isset($_POST["othert"])) {
+        $othert = limpiarDatos($_POST["othert"]);
+      
     } else {
       $othert = null;
     }
+
+      echo "<strong>Name: </strong>".$name."<br/>";
+      echo "<strong>Email: </strong>".$email."<br/>";
+      echo "<strong>Phone: </strong>".$phone."<br/>";
+      echo "<strong>Address: </strong>".$address."<br/>";
+      echo "<strong>Province: </strong>".$province."<br/>";
+      echo "<strong>City: </strong>".$city."<br/>";
+      echo "<strong>Z-Code: </strong>".$Zcode."<br/>";
+      echo "<strong>Format: </strong>".$format."<br/>";
+      echo "<strong>Comment: </strong>".$othert."<br/>";
+      // var_dump($cheko);
   } else {
       if ($name_err == true) {
         echo "Formato de nombre incorrecto<br/>";
-      } if ($email_err == true) {
+      } 
+      if ($email_err == true) {
         echo "Formato de email incorrecto<br/>";
-      } if ($phone_err == true) {
+      } 
+      if ($phone_err == true) {
         echo "Formato de teléfono incorrecto<br/>";
       }
     }
