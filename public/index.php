@@ -28,7 +28,6 @@
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" placeholder="Required">
                     <br>
-                    
                 </div>
                 <div class="contact_input">
                     <label for="email">Email Address</label>
