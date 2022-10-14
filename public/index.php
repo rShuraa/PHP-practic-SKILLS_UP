@@ -112,13 +112,13 @@
                 <legend>Newsletter</legend>
                 <label>Select the newsletters you would like to recive</label><br>
                 <br>
-                <input id="newshtml" type="checkbox" value="HTML" name="new[]">
+                <input id="newshtml" type="checkbox" value="000" name="new[]">
                 <label for="newshtml">HTML News</label><br>
                 <br>
-                <input id="newscss" type="checkbox" value="CSS" name="new[]">
+                <input id="newscss" type="checkbox" value="001" name="new[]">
                 <label for="newscss">CSS News</label><br>
                 <br>
-                <input id="newsjs" type="checkbox" value="JS" name="new[]">
+                <input id="newsjs" type="checkbox" value="010" name="new[]">
                 <label for="newsjs">Javascript News</label><br>
                 <br>
                 <label>Newsletter format</label><br>

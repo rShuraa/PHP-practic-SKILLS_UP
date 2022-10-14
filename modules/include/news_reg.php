@@ -8,7 +8,7 @@ function limpiarDatos($data) {    //Esta función corrige errores previos que pu
           return $data;
       }
 
-  $name = $email = $phone = $address = $province =$Zcode=$news =$format =$othert =$city= "";
+  $name = $email = $phone = $address = $province =$Zcode=$news =$format =$othert =$city="";
   $name_err = $email_err = $phone_err = false;
 
 function validar_nombre($name) {
@@ -83,12 +83,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Zcode = null;
       }
       
-      if (isset($_POST["new"])) {
-        $cheko = limpiarDatos($_POST["new"]);
-        
-      } else {
-        $cheko = null;
-      }
+      $cheko = filter_input(
+        INPUT_POST, //Pilla el post del index
+        'new', //este es el name de tu input checkbox del array
+        FILTER_SANITIZE_SPECIAL_CHARS, //limpia datos
+        FILTER_REQUIRE_ARRAY //lo convierte en array
+      );
+      $string=implode("," ,$cheko); //Mete en la variable $string todos los elementos del array + una coma
+      
 
       // if (isset($_POST["format"])) {
       //   $format = limpiarDatos($_POST["format"]);
@@ -96,6 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // } else {
       //   $format = null;
       // }
+
+
+      
 
 
       if (isset($_POST['format'])) {
@@ -110,10 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       if (isset($_POST["othert"])) {
         $othert = limpiarDatos($_POST["othert"]);
-      
-    } else {
+      } else {
       $othert = null;
-    }
+      }
+
 
       echo "<strong>Name: </strong>".$name."<br/>";
       echo "<strong>Email: </strong>".$email."<br/>";
@@ -124,6 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo "<strong>Z-Code: </strong>".$Zcode."<br/>";
       echo "<strong>Format: </strong>".$format."<br/>";
       echo "<strong>Comment: </strong>".$othert."<br/>";
+      echo "<strong>News: </strong>".$string."<br>";
       // var_dump($cheko);
   } else {
       if ($name_err == true) {
@@ -150,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
+//El array si me viene 1pues compruebo cual me llegó, dependiendo de que me llegó lo compruebo con un switch y le establezco la variable en funcion de su valor 
 
 
   //   foreach($cheko as $cheka){
