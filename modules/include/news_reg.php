@@ -10,6 +10,7 @@ function limpiarDatos($data) {    //Esta función corrige errores previos que pu
 
   $name = $email = $phone = $address = $province =$Zcode=$news =$format =$othert =$city="";
   $name_err = $email_err = $phone_err = false;
+  $chekeao;
 
 function validar_nombre($name) {
   if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) { 
@@ -90,6 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         FILTER_REQUIRE_ARRAY //lo convierte en array
       );
       $string=implode("," ,$cheko); //Mete en la variable $string todos los elementos del array + una coma
+
+      
       
 
       // if (isset($_POST["format"])) {
@@ -119,6 +122,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $othert = null;
       }
 
+      $lenArray = count($cheko);
+      switch ($lenArray) {
+        case 1:
+          if ($cheko[0]=="100") {
+            $chekeao = 100;
+          } elseif ($cheko[0]=="010") {
+            $chekeao = 010;
+          } else {
+            $chekeao = 001;
+          }
+          break;
+        
+        case 2:
+          if ($cheko[0] != "100") {
+            $chekeao = 011;
+          } elseif ($cheko[1] != "010") {
+            $chekeao = 101;
+          } else {
+            $chekeao = 110;
+          }
+          break;
+          
+        case 3:
+          $chekeao = 111;
+          break;
+
+        default:
+          $chekeao = 100;
+          break;
+      }
+
 
       echo "<strong>Name: </strong>".$name."<br/>";
       echo "<strong>Email: </strong>".$email."<br/>";
@@ -131,6 +165,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo "<strong>Comment: </strong>".$othert."<br/>";
       echo "<strong>News: </strong>".$string."<br>";
       // var_dump($cheko);
+      
+      echo "<strong>News: </strong>".$chekeao."<br>";
+
+
+      
   } else {
       if ($name_err == true) {
         echo "Formato de nombre incorrecto<br/>";
