@@ -54,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!validar_movil($phone)){
       $phone_err = true;
     } 
-      
     
 
     if (validar_nombre($name) && validar_email($email) && validar_movil($phone)) {
@@ -126,32 +125,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       switch ($lenArray) {
         case 1:
           if ($cheko[0]=="100") {
-            $chekeao = 100;
+            $chekeao = bindec('100');
           } elseif ($cheko[0]=="010") {
-            $chekeao = 010;
+            $chekeao =bindec('010');
           } else {
-            $chekeao = 001;
+            $chekeao = bindec('001');
           }
           break;
         
         case 2:
           if ($cheko[0] != "100") {
-            $chekeao = 011;
+            $chekeao = bindec('011');
           } elseif ($cheko[1] != "010") {
-            $chekeao = 101;
+            $chekeao = bindec('101');
           } else {
-            $chekeao = 110;
+            $chekeao = bindec('110');
           }
           break;
           
         case 3:
-          $chekeao = 111;
+          $chekeao = bindec('111');
           break;
 
         default:
-          $chekeao = 100;
+          $chekeao = bindec('100');
           break;
       }
+
+      try {
+        $sql = "SELECT * from news_reg WHERE fullname = :fullname OR email = :email OR phone = :phone";
+  
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':fullname',$name, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':phone', $phone, PDO::PARAM_STR);
+  
+        $stmt->execute();
+        $resultado = $stmt->fetchAll();
+        echo "Resultado es: " . var_dump($resultado) . "<br>";
+  
+        if ($resultado){
+          echo "La información existe.<br>";
+        } else{
+          try {
+            $sql = "INSERT INTO news_reg (fullname, email, phone, address, city, state, zipcode, newsletters, format_news, suggestion) VALUES (:fullname, :email, :phone, :address, :city, :state, :zipcode, :newsletters,:format_news, :suggestion)";
+  
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':fullname', $name, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':phone', $phone, PDO::PARAM_STR);
+            $stmt->bindParam(':address', $address, PDO::PARAM_STR);
+            $stmt->bindParam(':city', $city, PDO::PARAM_STR);
+            $stmt->bindParam(':state', $province, PDO::PARAM_STR);
+            $stmt->bindParam(':zipcode', $Zcode, PDO::PARAM_STR);
+            $stmt->bindParam(':newsletters', $chekeao, PDO::PARAM_INT);
+            $stmt->bindParam(':format_news', $format, PDO::PARAM_INT);
+            $stmt->bindParam(':suggestion', $othert, PDO::PARAM_STR);
+  
+            $stmt->execute();
+            echo "Datos introducidos correctamente.<br>";
+          } catch(PDOException $e){
+            echo $sql . "<br>" . $e->getMessage();
+          }
+        }
+      } catch (PDOException $e){
+        echo $sql . "<br>" . $e->getMessage();
+      }
+
 
 
       echo "<strong>Name: </strong>".$name."<br/>";
@@ -165,7 +205,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo "<strong>Comment: </strong>".$othert."<br/>";
       echo "<strong>News: </strong>".$string."<br>";
       // var_dump($cheko);
-      
       echo "<strong>News: </strong>".$chekeao."<br>";
 
 
