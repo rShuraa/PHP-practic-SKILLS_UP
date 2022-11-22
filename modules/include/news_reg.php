@@ -13,7 +13,7 @@ function limpiarDatos($data) {    //Esta función corrige errores previos que pu
   $chekeao;
 
 function validar_nombre($name) {
-  if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) { 
+  if (!preg_match("/^[a-zA-Z-']*$/",$name)) { 
     return false;
   } else{
     return true;
@@ -23,17 +23,17 @@ function validar_nombre($name) {
 function validar_movil($phone){
   if (!preg_match("/^[0-9]{9}+$/",$phone)) { 
     return false;
-} else{
+  } else {
     return true;
-}
+  }
 }
 
 function validar_email($email) {
   if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  return true;
-} else {
-  return false;
-}
+    return true;
+  } else {
+    return false;
+  }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
