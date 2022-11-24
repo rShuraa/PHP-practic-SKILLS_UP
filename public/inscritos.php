@@ -21,8 +21,8 @@
 <body>
 <main>
     <?php if ($_SERVER['REQUEST_METHOD'] === 'GET') : ?>
-        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST"></form>
-            <button name="nombrequequieran">USUARIO -></button>
+        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
+            <button name="nombrequequieran" type="submit">USUARIO -></button>
         </form>
     <?php else : ?>
         <?php 
